@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	// 페이지가 로드될 때 각 버튼에 이벤트 리스너를 설정
+	window.onload = function() {
+		document.getElementById("btnOk1").onclick = function() {
+			startFunc(); // "AJAX 원래 이해" 버튼 클릭 시 startFunc 함수 호출
+		}
+		document.getElementById("btnOk2").onclick = startXml; // "XML 읽기" 버튼 클릭 시 startXml 함수 호출
+		document.getElementById("btnOk3").onclick = startJson; // "JSON 일기" 버튼 클릭 시 startJson 함수 호출
+		document.getElementById("btnOk4").onclick = startJson2; // "JSON 일기2" 버튼 클릭 시 startJson2 함수 호출
+		document.getElementById("btnOk5").onclick = startJson3; // "JSON 일기3" 버튼 클릭 시 startJson3 함수 호출
+	}
+
+	let xhr; // XMLHttpRequest 객체를 담을 전역 변수
+
+	// XMLHttpRequest 클래스를 이용하여 "js31csv.txt" 파일을 비동기적으로 가져오는 함수
+	function startFunc() {
+		xhr = new XMLHttpRequest(); // XMLHttpRequest 객체 생성
+
+		// "GET" 방식으로 "js31csv.txt" 파일을 비동기적으로 요청
+		xhr.open("GET", "js31csv.txt", true);	// 서버에서 데이터 가져오기 , 파일 , 비동기적 요청을 사용할지 여부 (true 비동기적)
+
+		// 요청 상태가 변경될 때마다 호출되는 콜백 함수
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === 4) { // 요청 상태가 완료되었을 때
+				if (xhr.status === 200) { // 요청 성공
+					process(); // process() 함수 호출
+				}
+			}
+		};
+
+		xhr.send(); // 서버에 요청 보내기
+
+		// 서버에서 받은 데이터를 처리하는 함수
+		function process() {
+			let data = xhr.responseText; // 서버에서 받은 데이터
+			let rowData = data.split("\n"); // 데이터를 행 단위로 분리
+
+			let str = "";
+			for (let i = 0; i < rowData.length; i++) { // 각 행을 순차적으로 처리
+				let colData = rowData[i].split(","); // 행을 열 단위로 분리
+				for (let j = 0; j < colData.length; j++) { // 각 열을 순차적으로 처리
+					str += colData[j] + " "; // 열의 데이터를 추가
+				}
+				str += "<hr>"; // 각 행 사이에 <hr> 태그 추가
+			}
+			document.querySelector("#disp").innerHTML = str; // 결과를 화면에 출력
+		}
+	}
+
+	// XML 파일을 처리하는 함수
+	function startXml() {
+		xhr = new XMLHttpRequest(); // XMLHttpRequest 객체 생성
+
+		// "GET" 방식으로 XML 파일을 요청  
+		xhr.open("GET", "js31.xml", true);
+
+		// 요청 상태가 변경될 때마다 호출되는 콜백 함수
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === 4 && xhr.status === 200) { // 요청 성공
+				processXml(xhr.responseXML); // XML 응답을 처리하는 함수 호출
+			}
+		};
+
+		xhr.send(); // 요청 보내기
+
+		// XML 데이터를 처리하는 함수
+		function processXml() {
+			let data = xhr.responseXML; // XML 데이터를 가져오기
+			let itemNode = data.getElementsByTagName("item"); // <item> 태그 요소 가져오기
+			let codeNode = data.getElementsByTagName("code"); // <code> 태그 요소 가져오기
+			let sangNode = data.getElementsByTagName("sangpum"); // <sangpum> 태그 요소 가져오기
+
+			let str = "";
+			// 각 XML 요소를 순차적으로 처리하여 화면에 출력할 문자열 생성
+			for (let i = 0; i < itemNode.length; i++) {
+				str += codeNode[i].childNodes[0].nodeValue + " "; // <code>의 값을 가져와서 추가
+				str += sangNode[i].firstChild.nodeValue + " "; // <sangpum>의 값을 가져와서 추가
+				str += codeNode[i].getAttribute("price"); // <code> 태그의 "price" 속성값 추가
+				str += "<br>"; // 줄바꿈
+			}
+
+			document.querySelector("#disp").innerHTML = str; // 결과를 화면에 출력
+		}
+	}
+
+	// JSON 파일을 처리하는 함수
+	function startJson() {
+		xhr = new XMLHttpRequest(); // XMLHttpRequest 객체 생성
+		xhr.open("GET", "js31.json", true); // "GET" 방식으로 JSON 파일 요청
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === 4 && xhr.status === 200) { // 요청 성공
+				processJson(); // JSON 응답을 처리하는 함수 호출
+			}
+		};
+		xhr.send(); // 요청 보내기
+	}
+
+	// JSON 데이터를 처리하는 함수
+	function processJson() {
+		let data = xhr.responseText; // 서버에서 받은 JSON 데이터를 텍스트로 가져오기
+		let parseData = JSON.parse(data); // JSON 문자열을 자바스크립트 객체로 변환
+
+		let str = "";
+		// JSON 배열을 순차적으로 처리하여 화면에 표시할 문자열 생성
+		for (let i = 0; i < parseData.sangpum.length; i++) {
+			str += parseData.sangpum[i].code + "&nbsp;" + parseData.sangpum[i].sang
+					+ " <br>"; // 각 상품 코드와 상품명을 출력
+		}
+		document.querySelector("#disp").innerHTML = str; // 결과를 화면에 출력
+	}
+
+	// fetch()를 사용하여 JSON 파일을 처리하는 함수
+	function startJson2() {
+		const url = "js31.json"; // JSON 파일 경로
+		
+		// fetch()를 사용하여 비동기적으로 JSON 파일을 가져옴
+		fetch(url).then(res => {
+			if(res.status === 200){ // 응답 상태가 200(성공)일 때
+				return res.json(); // JSON 형식으로 응답을 반환
+			}else{
+				console.error(`HTTP error! status=${res.status}`); // 오류 처리
+			}
+		}).then(jsonData => {
+			processJson2(jsonData); // JSON 데이터를 처리하는 함수 호출
+		}).catch(err => {
+			console.log(err); // 오류 발생 시 오류 로그 출력
+		})
+	}
+
+	// fetch()로 받은 JSON 데이터를 처리하는 함수
+	function processJson2(jsonData) {
+		let str = "";
+		// JSON 데이터를 순차적으로 처리하여 화면에 출력할 문자열 생성
+		for (let i = 0; i < jsonData.sangpum.length; i++) {
+			str += jsonData.sangpum[i].code + "&nbsp;" + jsonData.sangpum[i].sang
+					+ " <br>"; // 각 상품 코드와 상품명을 출력
+		}
+		document.querySelector("#disp").innerHTML = str; // 결과를 화면에 출력
+	}
+
+	// async/await를 사용하여 JSON 파일을 처리하는 함수
+	async function startJson3() {
+		const url = "js31.json"; // JSON 파일 경로
+		const response = await fetch(url); // await를 사용하여 fetch()의 응답을 기다림
+		const data = await response.json(); // 응답을 JSON 형식으로 변환
+		processJson2(data); // JSON 데이터를 처리하는 함수 호출
+	}
+</script>
+</head>
+<body>
+	<h2>AJAX 연습</h2>
+	<button id="btnOk1">AJAX 원래 이해</button> <!-- 버튼 클릭 시 startFunc 함수 호출 -->
+	<br>
+	<button id="btnOk2">XML 읽기</button> <!-- 버튼 클릭 시 startXml 함수 호출 -->
+	<br>
+	<button id="btnOk3">JSON 일기</button> <!-- 버튼 클릭 시 startJson 함수 호출 -->
+	<br>
+	<button id="btnOk4">JSON 일기2</button> <!-- 버튼 클릭 시 startJson2 함수 호출 -->
+	<br>
+	<button id="btnOk5">JSON 일기3</button> <!-- 버튼 클릭 시 startJson3 함수 호출 -->
+	<br>
+	<hr>
+	<div id="disp"></div> <!-- 데이터 결과를 출력할 div -->
+</body>
+</html>

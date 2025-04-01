@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel='stylesheet' type='text/css' href='css/css.css'>
+<script type="text/javascript">
+window.onload = () => {
+	document.getElementById("btnOk").onclick=function(){
+		// 입력자료 오류 검사 생략
+		frm.submit();
+	}
+}
+</script>
+</head>
+<body>
+	<table border="1">
+		<tr>
+			<td><img src="../images/jepum1.jpg" width="100%" title="곧 매진! 서둘러" /></td>
+			<td><pre>
+릴라코 경찰차 장난감 미니자동차 5종세트, 경찰차, 1개
+47% 49,000원 
+26,000원 -> 쿠팡판매가
+25,000원 -> 즉시할인가
+이 상품은 내일 도착, 무료배송
+	
+</pre></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<form action="../CartServlet" name="frm" method="post">
+					<input type="hidden" name="name" value="미니자동차 5종세트"> 
+					<input type="hidden" name="price" value="25000">
+					 
+					<input type="button" id="btnOk" value="🛒장바구니에 담기🛒">
+					<input type="button" value="🛖홈페이지로 이동🛖" onclick="history.back()">
+				</form>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel='stylesheet' type='text/css' href='css/css.css'>
+</head>
+<body>
+	<pre>
+		<strong>
+1.정의
+-JSP에서 표준 액션 태그(useBean, setProperty, getProperty 등)를 이용해 접근할 수 있는 자바 객체
+-여러 JSP 페이지에서 공통으로 사용할 수 있는 비즈니스 로직 처리를 담당
+
+2.구성 요소
+-속성(멤버변수): 객체가 가지는 구체적인 데이터
+-게터/세터 메소드:
+-게터(예: getName()): 속성 값을 가져오는 역할
+-세터(예: setName(...)): 속성 값을 설정하는 역할
+
+3.특징
+-JSP 페이지에 종속적이지 않음 → 재사용 가능 (다른 JSP에서도 동일 객체 이용 가능)
+-빌더 형식 개발도구(IDE)에서 가시적으로 조작 가능 (드래그 앤 드롭 등)
+-소프트웨어 컴포넌트처럼 재사용성과 확장성이 뛰어남
+-여러 JSP 페이지가 하나의 Bean을 공유해쓰므로, 유지보수도 편해져.
+
+4.쉽게 말해
+JSP 내부에서 사용할 수 있도록 만들어진, 속성과 게터/세터를 갖춘 일반 자바 객체
+비즈니스 로직이나 데이터 처리를 JSP 코드와 분리함으로써, 유지보수와 재사용이 편리해짐
+</strong>
+	</pre>
+
+	<h2>Beans 를 이용한 구구단 출력하기</h2>
+	<form action="jspex9gugu.jsp">
+		몇단? <input type="text" name="dan" value="2"> <input
+			type="submit">
+
+	</form>
+
+</body>
+</html>

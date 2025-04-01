@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이벤트 처리 이해</title>
+
+<script type="text/javascript">
+	// 이벤트 처리 함수
+	function ourFunc() {
+		console.log('ok');
+
+		// 날짜 문자열을 '-' 기준으로 분리
+		let dateTime = "2025-2-28";
+		let arrData = dateTime.split('-');
+
+		// 분리된 데이터를 형식에 맞춰 출력
+		console.log(`${arrData[0]}년 ${arrData[1]}월 ${arrData[2]}일`);
+	}
+</script>
+</head>
+<body>
+
+	<h2>이벤트 처리 이해</h2>
+	<!-- 네이버 링크 -->
+	<a href="https://www.naver.com">네이버</a>
+	<br>
+	<!-- 이벤트 처리 함수 호출 1 (자바스크립트 링크 사용) -->
+	<a href="javascript:ourFunc()">이벤트 처리 함수 호출 1</a>
+	<br>
+	<!-- 이벤트 처리 함수 호출 2 (버튼 클릭으로 호출) -->
+	<input type="button" value="이벤트 처리 함수 호출 2" onclick="ourFunc()">
+	<br>
+	<!-- 이벤트 처리 함수 호출 3 (버튼 클릭으로 호출) -->
+	<button onclick="ourFunc()">이벤트 처리 함수 호출 3</button>
+
+</body>
+</html>

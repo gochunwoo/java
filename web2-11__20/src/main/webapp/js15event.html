@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>색상 변경 예시</title>
+<script type="text/javascript">
+	// 색상 변경 함수
+	function colorCharn() {
+		// 첫 번째 select에서 선택한 배경색 값 가져오기
+		let backgroundColor = document.frm.tcolor1.value;
+		// 두 번째 select에서 선택한 글자색 값 가져오기
+		let textColor = document.frm.tcolor2.value;
+
+		// 페이지의 배경색을 첫 번째 선택한 색상으로 설정
+		document.body.style.backgroundColor = backgroundColor;
+		// 페이지의 글자색을 두 번째 선택한 색상으로 설정
+		document.body.style.color = textColor;
+
+		// 선택한 색상들을 콘솔에 출력
+		console.log("배경색: " + backgroundColor + ", 글자색: " + textColor);
+	}
+</script>
+</head>
+<body>
+	<h2>이벤트 연습</h2>
+	<form name="frm">
+		<table border="1">
+			<tr>
+				<td colspan="2">색상을 선택</td>
+			</tr>
+			<tr>
+				<td><b>배경색:</b></td>
+				<td><select name="tcolor1">
+						<option value="black">검정</option>
+						<option value="blue">파랑</option>
+						<option value="green">초록</option>
+						<option value="white">하양</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td><b>글자색:</b></td>
+				<td><select name="tcolor2">
+						<option value="black">검정</option>
+						<option value="blue">파랑</option>
+						<option value="green">초록</option>
+						<option value="white">하양</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align: center"><input type="button"
+					value="변경" onclick="colorCharn()"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

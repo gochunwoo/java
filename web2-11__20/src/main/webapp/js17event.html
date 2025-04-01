@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	// func1() 함수는 전통적인 이벤트 처리 방법을 사용
+	function func1() {
+		// 'show' 아이디를 가진 요소의 텍스트를 "전통적인 이벤트 처리"로 변경
+		document.getElementById("show").innerText = "전통적인 이벤트 처리";
+	}
+
+	// 전역 변수 a에 10을 할당
+	let a = 10;
+
+	// 객체 b를 생성, b 객체 안에 두 개의 메소드를 정의
+	let b = {
+		// funcNew1 메소드: 'show' 아이디를 가진 요소의 텍스트를 "b 객체의 메소드 처리"로 변경
+		funcNew1 : function() {
+			document.getElementById("show").innerText = "b 객체의 메소드 처리";
+		},
+
+		// funcNew2 메소드: 'show' 아이디를 가진 요소의 텍스트를 "b 객체의 멤버 처리"로 변경
+		funcNew2 : function() {
+			// 이 부분은 'show' 아이디를 가진 요소의 텍스트를 HTML로 처리하여 h2 태그를 포함한 텍스트로 변경합니다.
+			document.getElementById("show").innerHTML = "<h2>b 객체의 멤버 처리</h2>";
+		}
+	}
+</script>
+
+<script type="text/javascript">
+	// aa() 함수: 페이지가 로드될 때 'kk'라는 알림을 띄움
+	function aa() {
+		alert("kk");
+	}
+
+	// window.onload 이벤트를 사용하여 페이지가 로드될 때 실행되는 함수 정의
+	window.onload = function() {
+		// 'btn1' 아이디를 가진 버튼을 선택하여 클릭 이벤트 처리
+		const exBtn1 = document.getElementById("btn1");
+		exBtn1.onclick = function() {
+			// 'show' 아이디를 가진 요소의 텍스트를 "클릭1 버튼 선택"으로 변경
+			document.getElementById("show").innerText = "클릭1 버튼 선택";
+		}
+
+		// 'myBtn' name을 가진 버튼들을 배열로 가져옴 (이 버튼들은 2개 이상일 수 있음)
+		const exBtn2 = document.getElementsByName("myBtn");
+		console.log(exBtn2.length); // 'myBtn'을 가진 버튼의 개수를 콘솔에 출력
+
+		// 첫 번째 'myBtn' 버튼을 클릭하면 'show' 영역의 텍스트가 "클릭2 버튼 누름"으로 변경
+		exBtn2[0].onclick = function() {
+			document.getElementById("show").innerText = "클릭2 버튼 누름";
+		}
+
+		// 두 번째 'myBtn' 버튼을 클릭하면 'show' 영역의 텍스트가 "클릭3 버튼 처리"로 변경
+		exBtn2[1].onclick = function() {
+			document.getElementById("show").innerText = "클릭3 버튼 처리";
+		}
+
+		// 'btn4' 버튼 클릭 시 텍스트를 변경하는 함수
+		document.getElementById("btn4").onclick = btn4HandlerFunc;
+	}
+
+	// btn4 클릭 시 처리되는 함수
+	function btn4HandlerFunc() {
+		document.getElementById("show").innerText = "클릭4 누르다니....";
+
+		// 이벤트 연결 및 해제
+		// .addEventListener("이벤트 종류", 수행함수명)
+		document.getElementById("btn5").addEventListener("click", abcFunc);
+	}
+
+	// abcFunc: btn5 클릭 시 수행될 함수 정의
+	function abcFunc() {
+		document.getElementById("show").innerText = "클릭5 만세";
+		// 이벤트 해제 : removeEventListener("click", abcFunc)
+		document.getElementById("btn5").removeEventListener("click", abcFunc);
+	}
+</script>
+</head>
+
+<body>
+	<h2>* 이벤트 처리 *</h2>
+
+	<!-- 버튼1을 클릭하면 func1() 함수가 호출되어 'show' 요소에 텍스트가 변경됨 -->
+	<input type="button" value="버튼1" onclick="func1()">
+	<br>
+
+	<!-- 버튼2를 클릭하면 b 객체의 funcNew1() 메소드가 호출되어 'show' 요소의 텍스트가 변경됨 -->
+	<input type="button" value="버튼2" onclick="b.funcNew1()">
+	<br>
+
+	<!-- 버튼3을 클릭하면 b 객체의 funcNew2() 메소드가 호출되어 'show' 요소의 텍스트가 변경됨 -->
+	<input type="button" value="버튼3" onclick="b.funcNew2()">
+	<br>
+
+	<hr>
+
+	<!-- 5개의 버튼이 있으며, 각 버튼은 특정 id 또는 name 속성값을 가지고 있음 -->
+	<button id="btn1">클릭1</button>
+	<button id="btn2" name="myBtn">클릭2</button>
+	<button id="btn3" name="myBtn">클릭3</button>
+	<button id="btn4">클릭4</button>
+	<button id="btn5">클릭5</button>
+
+	<!-- 텍스트를 변경할 부분 -->
+	<div id="show"></div>
+</body>
+</html>

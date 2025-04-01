@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Layout Test</title>
+<style type="text/css">
+
+body {
+	width: 95%; /* 전체 페이지 너비를 화면 너비의 95%로 설정*/
+	margin: 0 auto; /* 페이지를 화면 중앙에 배치 */
+}
+
+h2#title {
+	text-align: center;
+	border-bottom: 2px dashed black;
+	padding-bottom: 10px;
+}
+
+ul {
+	list-style: none; /* 목록 스타일 제거 */
+	padding: 0; /* 안쪽 여백 제거 */
+	margin: 0; /* 바깥쪽 여백 제거 */
+}
+
+li a {
+	display: block; /* link를 블록 요소로 설정 */
+}
+
+.head {
+	border: 1px solid red;
+	width: 100%;
+	overflow: auto; /* 콘텐츠의 내용이 넘칠 경우 자동으로 스크롤바 추가 */
+	padding: 10px;
+	box-sizing: border-box; /*패딩과 테두디를 포함한 너비 설정 */
+}
+
+.head ul {
+	display: flex; /* flex box 레이아웃 설정 */
+	justify-content: center; /* 항목을 중앙에 배치 */
+	gap: 10px; /* 항목 사이에 간격 추가*/
+}
+
+nav {
+	float: left; /* 왼쪽으로 정렬하여 플로팅 */
+	width: 20%;
+}
+
+#contents {
+	float: left;
+	width: 55%;
+}
+
+#ad {
+	float: left;
+	width: 25%;
+	text-align: center;
+	font-size: 0.9em
+}
+
+footer {
+	clear: both; /* 플로팅 해제 */
+	text-align: center;
+	margin-top: 20px;
+}
+</style>
+</head>
+<body>
+	<h2 id="title">CSS로 화면 구조 설정 연습</h2>
+	<header>
+		<h3>여기는 머리글</h3>
+		<div class="head">
+			<ul>
+				<li class="go_site"><a href="https://www.naver.com">네이버</a></li>
+				<li class="go_site"><a href="https://www.korea.com">코리아</a></li>
+				<li class="go_site"><a href="https://www.daum.net">다음</a></li>
+			</ul>
+		</div>
+	</header>
+	<nav>
+		<h3>항목 선택</h3>
+		<ul>
+			<li>메인</li>
+			<li>자동차</li>
+			<li>반도체</li>
+			<li>배터리</li>
+			<li>조선</li>
+		</ul>
+	</nav>
+	<div id="contents">
+		<h3>핫 이슈 (본문)</h3>
+		<p>저는 앞으로 국민들께서 대통령이나 중요한 직위 공무원을 뽑을 때 꼭 피해야 되는 유형이 있다. 그런데 방금 전에
+			이재명 대표가 말씀하신 부분을 놓고 저는 엄청난 피해 의식이 있구나. 그러니까 본인에 대해서 여러 사법리스크나 이런 것들이
+			전개된 것이 100% 검찰 탓이고, 100% 언론 탓이다라는 인식을 하고 있고. 그럼 나는 내가 지금 가진 어떤 힘을
+			바탕으로 해 가지고 언론이나 검찰을 길들이기 해야겠다 이런 분들이 나중에 이런 식으로 사회를 개조하려다가 다 망가뜨릴 수
+			있다. 저는 이렇게 생각하거든요. 저는 그래서 굉장히 이 부분에 대해서 국민들이 심각하게 보셔야 될 것이 '입맛에 맞지 않는
+			언론은 다 가짜 뉴스다'라고 하면서 '대신 유튜브 봐라' 이렇게 했던 분이 윤석열 대통령이거든요 그러다 보니까 유튜브에서
+			떠드는 과학적 근거가 전혀 없는 부정선거 음모론 이런 거 붙들고 이제 대통령이 몰락한 거거든요. 저는 지금 아마 이재명
+			대표도 그 조기 첫 단계 아닌가. 나에 대해서 부정적인 언급이 나오는 언론은 나의 적이다 라는 언론관을 드러내기 시작했다고
+			봅니다.</p>
+	</div>
+	<div id="ad">
+		<h3>광고 글</h3>
+		<ol>
+			<li>현대</li>
+			<li>삼성</li>
+			<li>엘지</li>
+		</ol>
+	</div>
+
+	<footer>
+		<b>나는 바닥글</b> 공지 사항을 적음
+	</footer>
+
+</body>
+</html>

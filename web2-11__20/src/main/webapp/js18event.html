@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = () => {
+    // 'colorW' 버튼을 클릭하면 배경색을 흰색으로 변경
+    document.getElementById("colorW").onclick = function() {
+        document.body.style.backgroundColor = "white";  // 흰색 배경
+    }
+
+    // 'colorG' 버튼을 클릭하면 배경색을 녹색으로 변경
+    document.getElementById("colorG").onclick = () => {
+        document.body.style.backgroundColor = "#00ff00";  // 녹색 배경
+    }
+
+    // 'colorR' 버튼을 클릭하면 배경색을 빨간색으로 변경
+    document.querySelector("#colorR").onclick = () => {
+        document.body.style.backgroundColor = "rgb(255,0,0)";  // 빨간색 배경
+    }
+
+    // 인사하기 버튼 클릭 시 텍스트 변경
+    document.querySelector(".hello").onclick = function() {
+        document.querySelector("#show").innerText = "안녕하세요";
+    }
+
+    // 계산하기 버튼의 더블 클릭 이벤트 처리
+    document.querySelector("#calc").ondblclick = function() {
+        let ss = `연산결과는 ${10 + 5}`;
+        document.querySelector("#show").innerText = ss;
+    }
+
+    // 이름알기 버튼에 마우스 오버 이벤트 처리
+    document.querySelector("#irum").onmouseover = function() {
+        document.querySelector("#show").innerHTML = "<h2>난 신기해라고 해</h2>";
+    }
+
+    // 이름알기 버튼에 마우스 아웃 이벤트 처리
+    document.querySelector("#irum").onmouseout = function() {
+        document.querySelector("#show").innerHTML = "<h2>난 신기해라고 해</h2>";
+    }
+    
+    // a 태그 : click 이벤트가 기본 등록됨. 기본 이벤트 해제
+	document.querySelector("#daum").onclick= function(event){
+    	event.preventDefault();		// 해당 태그의 고유 이벤트 해제	
+    	console.log(event);
+    	// 다른 기능 구현해 보기
+    	console.log(`x좌표:${event.x} y좌표:${event.y}`);
+    }
+    
+    // select 태그
+    const sdata = document.querySelector("#sel");
+    /*
+    sdata.onclick = function(){
+    	 document.querySelector("#show").innerHTML = sdata.value;
+    	 console.log(sdata.value);
+    }
+    */
+    sdata.onchange = function(){
+   	 document.querySelector("#show").innerHTML = sdata.value;
+   	 console.log(sdata.value);
+   }
+}
+</script>
+</head>
+
+<body>
+	* 여러 이벤트 종류 중 일부 경험 *
+	<br>
+	<!-- 'colorW' 버튼: 흰색 배경 -->
+	<input type="button" value="흰색" id="colorW">
+
+	<!-- 'colorG' 버튼: 녹색 배경 -->
+	<span id="colorG" style="cursor: pointer; border: 1px solid black;">녹색</span>
+
+	<!-- 'colorR' 버튼: 빨간색 배경 -->
+	<b id="colorR" style="border: 1px solid black; cursor: pointer;">적색</b>
+
+	<hr>
+	이벤트 종류 연습
+	<br>
+	<button id="hello" class="hello">인사하기</button>
+	<button id="calc">계산하기(double click)</button>
+	<button id="irum">이름알기(mouse over)</button>
+
+	<br><br>
+	<a href="https://m.daum.net" id="daum">앵커 태그 클릭</a>
+	<br><br>
+	<select id = "sel">
+	<option value="프로그래머">프로그래머</option>
+	<option value="웹퍼블릭셔">웹퍼블릭셔</option>
+	<option value="프로게이머">프로게이머</option>
+	
+	</select>
+	<hr>
+	<div id="show">출력장소</div>
+</body>
+</html>
+

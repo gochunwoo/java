@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>간단한 계산기</title>
+
+<script type="text/javascript">
+
+        // 페이지가 로드될 때 실행되는 함수
+        window.onload = () => {
+            // "계산" 버튼이 클릭되었을 때 calculate 함수 실행
+            document.getElementById("calculateBtn").onclick = calculate;
+            // "지우기" 버튼이 클릭되었을 때 reset 함수 실행
+            document.getElementById("resetBtn").onclick = reset;
+        }
+
+        // 계산을 수행하는 함수
+        function calculate() {
+            // HTML에서 입력된 숫자값을 가져와서 숫자로 변환
+            let num1 = parseFloat(document.getElementById("num1").value);
+            let num2 = parseFloat(document.getElementById("num2").value);
+            
+            // 선택된 연산자 값을 가져옴
+            let operator = document.querySelector('input[name="operator"]:checked').value;
+            let result;
+
+            // 만약 숫자가 올바르지 않다면 경고 메시지 출력
+            if (isNaN(num1) || isNaN(num2)) {
+                alert("숫자를 입력하세요.");
+                return;
+            }
+
+            // 각 연산자에 맞는 계산을 정의한 객체
+            const operations = {
+                "+": (a, b) => a + b, // 더하기
+                "-": (a, b) => a - b, // 빼기
+                "*": (a, b) => a * b, // 곱하기
+                "/": (a, b) => (b !== 0) ? a / b : alert("0으로 나눌 수 없습니다.") // 나누기, 0으로 나누는 경우 처리
+            }
+
+            // 연산 수행, 결과 값 저장
+            result = operations[operator](num1, num2);
+
+            // 결과를 결과 입력창에 표시
+            document.getElementById("result").value = result;
+        }
+
+        // 초기화 함수
+        function reset() {
+            // 모든 입력 필드와 선택을 초기화
+            document.getElementById("num1").value = "";
+            document.getElementById("num2").value = "";
+            document.querySelector('input[name="operator"]:checked').checked = false;
+            document.getElementById("result").value = "";
+        }
+    </script>
+</head>
+
+<body>
+	<!-- 계산기 UI -->
+	<div>
+		<h2>간단한  계산기</h2>
+
+		<!-- 첫 번째 숫자 입력란 -->
+		<label for="num1">숫자 1:</label> <input type="text" id="num1">
+		<br>
+		<br>
+
+		<!-- 두 번째 숫자 입력란 -->
+		<label for="num2">숫자 2:</label> <input type="text" id="num2">
+
+		<div>
+			<br>
+			<br>
+			<!-- 연산자 선택 라디오 버튼들 -->
+			<label><input type="radio" name="operator" value="+">+</label>
+			<label><input type="radio" name="operator" value="-">-</label>
+			<label><input type="radio" name="operator" value="*">*</label>
+			<label><input type="radio" name="operator" value="/">/</label>
+		</div>
+		<br>
+		<br>
+
+		<!-- 결과 입력란 -->
+		<label for="result">결과:</label> <input type="text" id="result"
+			disabled>
+		<!-- 결과는 입력불가 상태로 -->
+
+		<div>
+			<br>
+			<br>
+			<!-- 계산 및 지우기 버튼 -->
+			<input type="button" value="계산" id="calculateBtn"> <input
+				type="button" value="지우기" id="resetBtn">
+		</div>
+	</div>
+</body>
+</html>

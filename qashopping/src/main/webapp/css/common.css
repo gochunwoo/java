@@ -1,0 +1,228 @@
+@charset "UTF-8";
+
+/* 기본 설정 */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+/* 헤더 */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+}
+
+.header-left {
+    flex: 1;
+}
+
+.logo-area {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* 아이콘 메뉴 */
+.icon-menu {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.icon-menu i {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* 마이페이지 드롭다운 */
+.icon-dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.icon-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 35px;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    width: 180px;
+    padding: 10px;
+    z-index: 1000;
+}
+
+.icon-dropdown-menu strong {
+    display: block;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+.icon-dropdown-menu ul {
+    padding: 10px 0 0 10px;
+    margin: 0;
+}
+
+.icon-dropdown-menu li {
+    list-style: none;
+    padding: 3px 0;
+}
+
+.icon-dropdown-menu li a {
+    font-size: 13px;
+    color: #333;
+    text-decoration: none;
+}
+
+.icon-dropdown-wrapper:hover .icon-dropdown-menu {
+    display: block;
+}
+
+/* 내비게이션 바 */
+.nav-bar {
+    background-color: white;
+    border-bottom: 1px solid #eee;
+}
+
+.nav-list {
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+    list-style: none;
+    margin: 0;
+}
+
+.nav-list li {
+    position: relative;
+    width: 120px;
+    text-align: center;
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+}
+
+/* 드롭다운 메뉴 */
+.has-dropdown .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    z-index: 1000;
+}
+
+.has-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu li {
+    padding: 5px 0;
+}
+
+/* 검색 오버레이 */
+.search-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 900;
+}
+
+/* 검색창 */
+/* ========================= */
+/* ▶ 슬라이드 검색창 스타일 */
+/* ========================= */
+.slide-search {
+    position: fixed;
+    top: -100px; /* 처음에 위에 숨김 */
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    display: flex;
+    align-items: center;
+    padding: 20px 40px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: top 0.4s ease;
+    z-index: 999;
+}
+
+.slide-search.active {
+    top: 90px; /* 내비게이션 아래쯤 */
+}
+
+.slide-search .close-btn {
+    font-size: 20px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.slide-search input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid #000;
+    background: transparent;
+    outline: none;
+}
+
+.slide-search button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+/* ========================= */
+/* ▶ 바텀 푸터 영역 스타일 */
+/* ========================= */
+.footer {
+    background-color: #f0f8ff;
+    padding: 30px 40px;
+    font-size: 13px;
+    color: #333;
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #666;
+    font-family: 'Arial Black', sans-serif;
+}
+
+.footer-info p {
+    line-height: 1.6;
+    margin: 0;
+    white-space: nowrap;
+}
+

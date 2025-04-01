@@ -1,0 +1,156 @@
+/* ===== 기본 초기화 ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    text-align: center;
+}
+
+/* ===== 컨테이너 정렬 ===== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ===== 제목 ===== */
+h1, h2, h3 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+/* ===== 감성 버튼 ===== */
+button, input[type="button"], input[type="submit"], input[type="reset"] {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin: 5px;
+}
+
+button:hover, input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+/* ===== 링크 스타일 ===== */
+a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+a::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: orange;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+a:hover::after {
+    transform: scaleX(1);
+}
+
+/* ===== 입력창 ===== */
+input[type="text"], input[type="password"], input[type="email"], textarea, select {
+    width: 90%;
+    max-width: 400px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: white;
+}
+
+/* ===== 카드형 박스 (상품용) ===== */
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin: 15px;
+    display: inline-block;
+    width: 280px;
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.card h3 {
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+/* ===== Flex 정렬 ===== */
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* ===== 푸터 ===== */
+footer {
+    margin-top: 40px;
+    padding: 20px 0;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+}
+.complete-btn {
+    display: inline-block;
+    background-color: #7ecbff;  /* 연파랑 */
+    color: white;
+    padding: 14px 40px;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s ease;
+}
+
+.complete-btn:hover {
+    background-color: #62b7f9;  /* 살짝 진한 파랑으로 변화 */
+}
+

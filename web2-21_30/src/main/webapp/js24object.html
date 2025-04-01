@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>객체</title>
+<script type="text/javascript">
+	//객체 선언 방법
+	// object는 원시타입과 달리 다양한 데이터를 가질 수 있다.
+	window.onload = function() {
+
+		// 방법1) new 연산자 사용. 객체 생성자 사용
+		let obj1 = new Object(); // let obj1 ={}; 와 동일. object의 기본 멤버를 갖는다.
+		obj1.irum = "홍길동";
+		obj1.nai = 22;
+		obj1.juso = "강남구 테헤란로 123번지";
+		obj1.getJuso = function() {
+			return obj1.juso
+		}; // 메소드
+
+		console.log(obj1);
+		console.log(typeof (obj1), obj1.toString());
+
+		let str1 = obj1.irum + " 님의 나이는" + obj1.nai + "<br>" + "주소 : " + obj1.getJuso();
+		document.getElementById("disp1").innerHTML = str1;
+
+		let obj2 = obj1; // 주소 복사
+
+		obj1.irum = "고길동"; // 얖은 복사(shallow coppy) 제대로 복사할려면 객체따로생성
+		let str2 = obj2.irum + " 님의 나이는" + obj2.nai + "<br>" + "주소 : " + obj2.getJuso();
+		document.getElementById("disp2").innerHTML = str2;
+
+		// 방법2) literal(jason 형태의 데이터) 를 사용한 객체
+		let myObj = {
+			irum : "chonwoo", // 속성은 key: value 형태로 정의되고, 
+			nai : 33,
+			showNai : function(msg) { // 메소드는 key: function() { ... } 형태로 정의됩니다.
+				return this.nai + msg;
+
+			}
+
+		}
+		console.log(typeof (myObj), myObj);
+		// 참고 : this의 처리 시점
+		// this는 바인딩이 객체가 생성되는 시점에 결정된다
+		// 1) 일반 함수를 호출할 때는 this가 최상위 객체(global, window)를 가리킴
+		// 2) 메소드를 호출할 때는 호출된 객체를 가리킴
+		// 3) new를 사용하여 객체를 생성한 경우에는 객체를 가리킴 
+
+		let str3 = myObj.irum + " 님의 나이는 " + myObj.nai + " " + myObj["nai"]
+				+ " " + myObj.showNai("살");
+		document.getElementById("disp3").innerHTML = str3;
+
+		// 방법3) 중첩 객체
+		let myFriend = {
+			name : "gochunwoo",
+			age : 26,
+			otherFriend : {
+				name : "jsphell",
+				job : "it"
+			}
+		};
+
+		let str4 = myFriend.name + " 님의 나이는 " + myFriend.age + " job :"
+				+ myFriend.otherFriend.job;
+		document.getElementById("disp4").innerHTML = str4;
+
+		/*
+		// literal을 이용한 미니 계산기 작성
+		let calculator = {
+				sum(){
+					return this.a + this.b;
+				},
+				mul(){
+					return this.a + this.b;
+				},
+				read(){
+					this.a = +prompt('첫번째 숫자 : ', 1);
+					this.b = +prompt('두번째 숫자 : ', 1);
+				}
+		};
+		calculator.read();
+		console.log(calculator.sum());
+		console.log(calculator.mul());
+		 */
+
+		//3. 생성자 함수를 사용한 객체
+		function Person(name) {
+			// this = {};  기본적으로 생성됨
+			this.name = name; // Person 객체에 name이라는 public property를 정의
+			this.setName = function(neName) { // 메소드를 정의할때는 익명 함수 사용
+				this.name = neName; 
+			}
+		}
+		let pp = new Person("손오공");
+		document.getElementById("disp5").innerHTML = pp.name;
+		let pp2 = new Person();
+		// let pp = new Person("손오공");
+		document.getElementById("disp6").innerHTML = pp2.name;
+		pp2.setName("사오정");
+		document.getElementById("disp7").innerHTML = pp2["name"];
+
+		/*
+		function calculator2() {
+				this.read = function(){
+					this.a = +prompt('첫번째 숫자 : ', 1);
+					this.b = +prompt('두번째 숫자 : ', 1);	
+				}
+				this.sum = function(){
+					return this.a+this.b
+				}
+				this.mul = function(){ // 수정: mu1 -> mul
+					return this.a * this.b
+				}
+		};
+		let calculator = new calculator2();  
+		calculator.read();
+		console.log(calculator.sum());
+		console.log(calculator.mul());
+		 */
+
+		//참고 : 배열 객체 생성
+		let arr1 = [];
+		let arr2 = new Array();
+		console.log(arr1.constructor);
+		console.log(arr2.constructor); // ƒ Array() { [native code] }
+
+		arr1.push("kbs");
+		arr1.push("sbs");
+		arr1.push("mbc");
+		arr1.push("ytn");
+
+		arr1.reverse();
+		console.log("arr1 크기", arr1.length)
+		for (i in arr1) {
+			console.log(arr1[i]);
+		}
+		console.log('-----');
+		arr1.pop();
+		for (i in arr1) {
+			console.log(arr1[i]);
+		}
+	}
+</script>
+</head>
+<body>
+	<h2>다양한 방법으로 객체 생성 후 처리</h2>
+
+	<div id="disp1"></div>
+
+	<div id="disp2"></div>
+
+	<div id="disp3"></div>
+
+	<div id="disp4"></div>
+
+	<div id="disp5"></div>
+
+	<div id="disp6"></div>
+
+	<div id="disp7"></div>
+
+	<div id="disp8"></div>
+
+	<div id="disp9"></div>
+
+</body>
+</html>

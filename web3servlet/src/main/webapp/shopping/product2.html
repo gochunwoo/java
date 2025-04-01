@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel='stylesheet' type='text/css' href='css/css.css'>
+<script type="text/javascript">
+window.onload = () => {
+	document.getElementById("btnOk").onclick=function(){
+		// 입력자료 오류 검사 생략
+		frm.submit();
+	}
+}
+</script>
+</head>
+<body>
+	<table border="1">
+		<tr>
+			<td><img src="../images/jepum2.jpg" width="100%" title="급해 서둘러"/></td>
+			<td><pre>
+마이크로소프트 2024 서피스 프로 13 스냅드래곤 
+X Plus + 키보드 세트
+블랙 · 512GB · 16GB · 
+WIN11 Home · 
+노트북(ZHY-00033), 
+키보드(8XA-00184)
+1,600,000원
+무료배송  3/12(수)까지 사전예약 가능
+3/14(금) 도착 보장 (로켓배송지 기준)
+</pre></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<form action="../CartServlet" name="frm" method="post">
+					<input type="hidden" name="name" value="마이크로 소프트 노트북"> 
+					<input type="hidden" name="price" value="1600000">
+					 
+					<input type="button" id="btnOk" value="🛒장바구니에 담기🛒">
+					<input type="button" value="🛖홈페이지로 이동🛖" onclick="history.back()">
+				</form>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

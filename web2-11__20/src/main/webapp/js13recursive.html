@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>재귀 호출(함수 자신을 호출 : 반복 처리)</title>
+</head>
+
+<body>
+	<h2>재귀 호출(함수 자신을 호출 : 반복 처리)</h2>
+
+	<script type="text/javascript">
+
+    // Math.pow() 내장 함수 사용 예시: 거듭 제곱 계산
+    console.log('거듭 제곱 내장함수 : ', Math.pow(2, 3));
+
+    // 방법 1: 전통적인 for loop로 거듭제곱 계산
+    function test1(x, n) {
+      let result = 1;
+
+      // x를 n번 곱하기 위한 반복문
+      for (let i = 0; i < n; i++) {
+        result *= x;
+      }
+
+      return result;
+    }
+    console.log('전통적 for loop 결과는 ', test1(2, 3)); // 2의 3제곱
+
+
+    // 방법 2: 재귀 호출로 거듭제곱 계산
+    function test2(x, n) {
+      if (n === 1) {
+        return x;
+      } else {
+        return x * test2(x, n - 1); // 함수가 자신을 호출
+      }
+    }
+    console.log('재귀적 loop 결과 ', test2(2, 3)); // 2의 3제곱
+
+
+    // 방법 2-1: 삼항 연산자를 사용한 재귀 호출
+    function test3(x, n) {
+      return (n === 1) ? x : (x * test3(x, n - 1));
+    }
+    console.log('재귀적 loop 결과2 ', test3(2, 3)); // 2의 3제곱
+
+
+    // 방법 2-2: 화살표 함수로 재귀 호출
+    const test4 = (x, n) => (n === 1) ? x : (x * test4(x, n - 1));
+    console.log('재귀적 loop 결과3 ', test4(2, 3)); // 2의 3제곱
+
+  </script>
+</body>
+</html>

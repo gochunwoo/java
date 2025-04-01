@@ -1,0 +1,64 @@
+/* 전체 배경과 중앙 정렬 */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: linear-gradient(to bottom, #e0f7ff, #ffffff);
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 제목 스타일 */
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* 콘텐츠 박스 */
+.content-box {
+  background: #ffffff;
+  padding: 25px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  font-size: 18px;
+  line-height: 1.8;
+  color: #333;
+}
+
+/* 버튼: 파랑~하늘색 그라데이션 + 애니메이션 */
+.animated-button {
+  padding: 12px 25px;
+  font-size: 18px;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: linear-gradient(-45deg, #1e90ff, #00bfff, #87cefa, #1e90ff);
+  background-size: 300% 300%;
+  animation: moveGradient 5s ease infinite;
+  transition: transform 0.3s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.animated-button:hover {
+  transform: scale(1.05);
+}
+
+/* 그라데이션 애니메이션 */
+@keyframes moveGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

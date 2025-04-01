@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript">
+        window.onload = function() { 
+            document.getElementById("sel").onchange = function() {
+                let sangpum = comment = "";
+
+                // frm 객체의 sel 값을 가져오는 부분
+                let sel = frm.sel.options[frm.sel.selectedIndex].value;
+                console.log(frm.sel.selectedIndex, " ", sel);
+
+                // frm.sel을 제대로 참조하도록 수정
+                let sang = frm.sel.options[frm.sel.selectedIndex].text;
+
+                if (sel === '1000') {
+                    sangpum = sang;
+                    comment = "볼펜은 모나미";
+
+                } else if (sel === '2000') {
+                    comment = "내 일상을 잘 정리해 둠";
+
+                } else if (sel === '3000') {
+                    comment = "움직임이 예술";
+                }
+
+                // table에 tr 추가
+                addRowFunc(sangpum, comment); 
+            }
+        }
+        
+        function addRowFunc(sangpum, comment) {
+            // tr 생성
+            let row = document.createElement("tr");
+
+            // td 추가
+            let col = addColFunc(sangpum);
+            col = addColFunc(comment);
+            
+            // tr에 td 추가
+            row.appendChild(col);
+            row.appendChild(col);
+
+            // tbody에 tr 추가
+            document.getElementById("myTbody").appendChild(row);
+        }
+        
+        function addColFunc(data) {
+            // td 생성
+            let col = document.createElement("td");
+            let text = document.createTextNode(data); // 전달된 데이터 추가
+            col.appendChild(text);
+            return col;
+        }
+    </script>
+</head>
+<body>
+    <h2>* DOM Test *</h2>
+    <form action="#" name="frm">
+        상품선택 : <select name="sel" id="sel">
+            <option value="">선택</option>
+            <option value="1000">볼펜</option>
+            <option value="2000">노트</option>
+            <option value="3000">마우스</option>
+        </select>
+    </form>
+    <br>
+    <div id="header"></div>
+    <table id="myTable">
+        <tbody id="myTbody">
+        <!--  dom 사용
+		<tr>
+		<td>값</td>
+		<tr> -->
+        </tbody>
+    </table>
+</body>
+</html>

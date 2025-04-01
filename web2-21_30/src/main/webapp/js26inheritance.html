@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+        // Animal 클래스 정의
+        class Animal {
+            move = "움직임";  // Animal 클래스의 고유 속성, 움직임
+
+            constructor(name) {
+                this.name = name;  // Animal의 이름
+                this.speed = 0;  // Animal의 초기 속도
+            }
+
+            // Animal의 기본 달리기 메소드
+            run(speed) {
+                this.speed = speed;
+                document.write(`<br>${this.name} : Speed ${this.speed}로 달립니다.`);  
+                document.write(`<br>${this.move}`);  // Animal의 move 속성 출력
+            }
+
+            // Animal의 멈추기 메소드
+            stop() {
+                this.speed = 0;
+                document.write(`<br>${this.name} : 멈춰!!!`);  
+            }
+
+            // Animal의 기본 메소드
+            disp() {
+                document.write(`<br>동물임을 널리 알리노라`);  
+            }
+        }
+
+        // Rabbit 클래스는 Animal 클래스를 상속받습니다.
+        class Rabbit extends Animal {
+            leg = 4;  // 기본적으로 4개의 다리를 가짐, 하지만 생성자에서 치환 가능
+
+            // Rabbit 클래스의 생성자
+            constructor(name, leg) {
+                super(name);  // 부모 클래스인 Animal의 생성자 호출
+                this.leg = leg;  // Rabbit의 다리 수 설정
+            }
+
+            // stop() 메소드 오버라이딩
+            stop() {
+                super.stop();  // 부모 클래스의 stop() 호출
+                this.hide();  // Rabbit 고유의 숨기기 메소드 호출
+                this.disp();  // 오버라이드된 disp() 메소드 호출
+                super.disp();  // 부모 클래스의 disp() 메소드 호출
+            }
+
+            // disp() 메소드 오버라이딩
+            disp() {
+                document.write(`<br>토끼 만세`);  
+                document.write(`<br>${this.move} ${super.move}`);  // Animal 클래스의 move와 Rabbit 클래스의 move 비교
+            }
+
+            // Rabbit 고유의 메소드
+            hide() {
+                document.write(`${this.name} 숨어 버림!`);  // Rabbit 고유의 숨는 행동
+            }
+        }
+
+        // Dog 클래스는 Animal 클래스를 상속받습니다.
+        class Dog extends Animal {
+            // Dog 클래스의 생성자
+            constructor(name) {
+                super(name);  // 부모 클래스인 Animal의 생성자 호출
+            }
+
+            // disp() 메소드 오버라이딩
+            disp() {
+                document.write(`<br>멍멍 만세`);  // Dog 고유의 메시지
+                document.write(`<br>멍멍! ${this.name}입니다!`);  // Dog의 메시지 출력
+            }
+        }
+
+        // 페이지 로드 시 실행
+        window.onload = function() {
+            const ani = new Animal('동물 슈퍼 클래스');
+            ani.disp();  // Animal 클래스의 disp() 메소드 호출
+            ani.run(5);  // Animal 클래스의 run() 메소드 호출
+            ani.stop();  // Animal 클래스의 stop() 메소드 호출
+
+            document.write(`<hr>---상속을 이해하자 rabbit---<br>`)
+
+            // Rabbit 객체 생성 후 메소드 호출
+            const rabbit = new Rabbit("산 토끼", 4);
+            rabbit.run(10);  // Rabbit 클래스의 run() 메소드 호출
+            rabbit.stop();  // Rabbit 클래스의 stop() 메소드 호출
+
+            document.write(`<hr>---상속을 이해하자 Dog---<br>`)
+            
+            // Dog 객체 생성 후 메소드 호출
+            const dog = new Dog('한봉지');
+            dog.run(10);  // Dog 클래스의 run() 메소드 호출
+            dog.stop();  // Dog 클래스의 stop() 메소드 호출
+            dog.disp();  // Dog 클래스의 disp() 메소드 호출
+            
+            document.write(`<hr>---다형성을 이해하자---<br>`)
+            // 다형성 예시
+            let poly = rabbit;
+            poly.disp();  // rabbit 객체의 disp() 호출
+            poly = dog;
+            poly.disp();  // dog 객체의 disp() 호출
+        }
+    </script>
+</head>
+<body>
+	<!-- 
+1. Animal 클래스는 기본적인 동물의 속성인 move, speed, name 을 가지고 있으며, run(), stop(), disp() 메소드를 제공합니다.
+   run()은 속도를 설정하고, stop()은 멈추고, disp() 는 기본적인 메시지를 출력합니다.
+
+2. Rabbit 은 Animal 클래스를 상속받습니다. stop()과 disp() 메소드를 오버라이딩하여, Rabbit 의 고유 행동을 추가합니다.
+   hide() 메소드는 Rabbit 고유의 동작으로 숨는 행동을 시뮬레이션합니다.
+
+3. Dog 클래스는 Animal 클래스를 상속받고, disp() 메소드를 오버라이딩하여 Dog 고유의 메시지를 출력합니다.
+
+다형성 : poly 변수에 rabbit 객체와 dog 객체를 차례로 할당한 후, disp() 메소드를 호출하여 다형성을 시연합니다. 
+	   이는 객체의 타입에 따라 다른 메소드가 호출되는 방식입니다.
+ -->
+</body>
+</html>

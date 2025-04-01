@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>직원 정보 조회</title>
+    <script type="text/javascript">
+        window.onload = function(){
+            showFunc();  // 페이지 로드 시 기본적으로 직원 정보를 조회
+            document.querySelector("#frm").onchange = showFunc; // 성별 선택 시 자동 조회
+        }
+
+        let xhr;
+        function showFunc(){
+            xhr = new XMLHttpRequest();
+            let fname = "js35ex.jsp?gender=" + frm.gender.value;  // 성별 값 전송
+            xhr.open("GET", fname, true);  // 비동기 GET 요청
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4 && xhr.status === 200){
+                    processFunc();
+                }
+            }
+            xhr.send();
+        }
+
+        function processFunc(){
+            let parseData = JSON.parse(xhr.responseText); // 응답 받은 JSON 데이터 파싱
+
+            let str = `<table border="1">
+                           <tr>
+                               <th>사번</th>
+                               <th>이름</th>
+                               <th>직급</th>
+                               <th>입사년</th>
+                           </tr>`;
+            for(let i = 0; i < parseData.jikwon.length; i++){
+                str += `<tr>`;
+                str += `<td>${parseData.jikwon[i].jikwonno}</td>`;
+                str += `<td>${parseData.jikwon[i].jikwonname}</td>`;
+                str += `<td>${parseData.jikwon[i].jikwonjik}</td>`;
+                str += `<td>${parseData.jikwon[i].jikwonyear}</td>`;
+                str += `</tr>`;
+            }
+            str += `</table>`;
+            document.querySelector("#disp").innerHTML = str;  // 조회된 직원 정보 표시
+        }
+    </script>
+</head>
+<body>
+    <h3>직원 정보</h3>
+    <form name="frm" id="frm">
+        <input type="radio" name="gender" class="gender" value="" checked>전체
+        <input type="radio" name="gender" class="gender" value="남">남
+        <input type="radio" name="gender" class="gender" value="여">여
+    </form>
+    <hr>
+    <div id="disp"></div>  <!-- 직원 정보가 출력될 부분 -->
+</body>
+</html>

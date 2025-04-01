@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>class 키워드 사용: 기존의 prototype 기반의 클래스 작성보다 좀 더 명료한 클래스 작성이 가능</h3>
+	<script type="text/javascript">
+class Class1 {
+    addr = "서울";  // 맴버변수는 let을 사용하지 않는다
+
+    constructor(name) {
+        this.name = name;  // 생성자에서 name을 할당
+    }
+
+    sayHi() {
+        document.write("<br>", this.name);
+        document.write("<br>", this.addr);
+
+        let msg = "프로그래머";  // 지역 변수
+
+        return `<br>이름은 ${this.name} ${msg}`;
+    }
+
+    // 수정: 객체를 문자열 형식으로 출력하기 위해 toString() 메소드 추가
+    toString() {
+        return `이름: ${this.name}, 주소: ${this.addr}`;
+    }
+}
+
+let class1 = new Class1("신기해");
+document.write(class1.toString());  // 수정: class1 객체를 문자열로 출력 (기존: class1을 그냥 출력하면 '[object Object]'로 나옴)
+document.write(class1.sayHi());
+document.write("<br> 이름 : ", class1.name);
+document.write("<br> 주소 : ", class1.addr);
+
+document.write("<br>^^^ 새로운 객체 생성 ^^;");
+let class2 = new Class1("백두산");
+document.write(class2.sayHi());
+</script>
+	<hr>
+	<script type="text/javascript">
+document.write("--------------새로운 클래스 생성-------------------");
+
+class Class2 {
+    subject = "자바스크립트";  // 기본 과목
+
+    constructor(name, age) {
+        this.name = name;  // name과 age를 생성자에서 받음
+        this.age = age;
+    }
+
+    printData() {
+        document.write(`<br>이름은 ${this.name}이고 나이는 ${this.age}`);
+        document.write(`<br>수강 과목은 ${this.subject}`);
+    }
+
+    // subject의 getter
+    get subjectMethod() {
+        return this.subject;
+    }
+
+    // subject의 setter
+    set setSubject(subject) {
+        this.subject = subject;
+    }
+}
+
+// 새로운 Class2 객체 생성
+let myclass = new Class2("저팔계", 33);
+myclass.printData();
+document.write("<br> 이름은 ", myclass.name);
+document.write("<br> 나이는 ", myclass.age);
+
+// 과목을 변경하는 예시
+myclass.subject = "파이썬";
+document.write("<br> 과목은 ", myclass.subject);
+
+// subject를 setter로 수정
+myclass.setSubject = "MariaDB"; // 과목을 setter로 수정
+document.write("<br> 수정된 과목은: ", myclass.subjectMethod);  // 수정된 과목을 getter로 출력
+</script>
+	<hr>
+	<script type="text/javascript">
+class Class3{
+	#name;	// private 멤버 변수
+	age;
+	static addr = "서울";
+	
+	 constructor(name, age) {
+	        this.#name = name;  // name과 age를 생성자에서 받음
+	        this.age = age;
+	    }
+	showData(){
+		document.write("<br>", this.#name, this.age, this.addr);
+	}
+}
+const person = new Class3('공기밥',23);
+document.write(person);
+document.write("<br>",person.age);
+document.write("<br>",Class3.addr);
+document.write("<br>",person.name);
+
+person.showData();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/css.css" />
+</head>
+<body>
+<h2>POST 요청 처리</h2>
+<form action="postDataServlet" method="post">
+	이름 : <input type="text" name="name" value="공기밥"><br/>
+
+	<!-- name이 동일 -->
+	주소 : <input type="text" name="addr" value="서울시"><br/>
+	주소 : <input type="text" name="addr" value="강남구 테헤란로"><br/>
+
+	<!-- checkbox -->
+	사용 가능한 언어를 모두 선택
+	<input type="checkbox" name="lan" value="C언어">C언어&nbsp;&nbsp;
+	<input type="checkbox" name="lan" value="자바">자바&nbsp;&nbsp;
+	<input type="checkbox" name="lan" value="파이썬">파이썬&nbsp;&nbsp;
+
+<!--  radio -->
+	<br>현재 사용 중인 운영체제는?
+	<input type="radio" name="os" value="윈도우" checked="checked">윈도우&nbsp;&nbsp;
+	<input type="radio" name="os" value="맥OS">맥OS<br/>
+	<br>
+	<input type="submit" value="자료 전송">
+</form>
+</body>
+</html>
