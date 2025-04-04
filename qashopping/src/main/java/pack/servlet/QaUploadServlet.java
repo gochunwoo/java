@@ -71,6 +71,7 @@ public class QaUploadServlet extends HttpServlet {
         bean.setTitle(title);
         bean.setPostcontent(postcontent);
         bean.setSecretYN(secretYN);
+        
 
         // 날짜는 현재 시각이 아닌 JSP에서 지정하거나 DB에서 설정할 수 있음
         bean.setPostcreatedate(new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()));
